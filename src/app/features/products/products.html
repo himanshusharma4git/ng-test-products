@@ -1,0 +1,32 @@
+<div class="page-head">
+    <h1 class="heading">Products List</h1>
+    <button class="add-product-button" routerLink="add-product">Add Product</button>
+</div>
+@defer(when selectedProductId() !== 0){
+    <app-product [selectedProductId]="selectedProductId()"></app-product>
+}
+<div class="products">
+    @if(status() === 'pending') {
+        <div class="loading">Loading products...</div>
+    } @else if(status() === 'failed') {
+        <div class="error">Error loading products. Please try again later.</div>
+    } @else {
+        @for(product of products(); track product.id) {
+            <div class="product-item" (click)="selectProduct(product.id ?? 0)">
+                <article class="card">
+                    @defer (on viewport) {
+                    <img class="product-image" [src]="product.image" [alt]="product.title" />
+                    } @placeholder {
+                    <div class="image-placeholder">Loading image...</div>
+                    }
+                    <h3 class="title">{{ product.title }}</h3>
+                    <p class="price">{{ product.price | currency:'INR' }}</p>
+                    <p class="description">{{ product.description }}</p>
+                    <div class="meta">ID: {{ product.id }}</div>
+                </article>
+            </div>
+        }@empty {
+            <p>No products available.</p>
+        }
+    }
+</div>
