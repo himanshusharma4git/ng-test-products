@@ -8,7 +8,7 @@ export const authGuardGuard: CanActivateFn = (route, state) => {
   const router = inject(Router);
 
   const user_token = session.getSessionStorage('auth_token');
-  const userDetails = session.getSessionStorageObject<any>('details');
+  const userDetails = session.getSessionStorageObject<any>('user_details');
 
   if(!user_token || !userDetails) {
     console.log('User is not authenticated, redirecting to login.');
