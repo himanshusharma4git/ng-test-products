@@ -21,6 +21,5 @@ export class Session {
 
   setSeesionToken(token:string){
     this.setSeessionStorage('auth_token', token);
-    this.setSeessionStorage('details', JSON.stringify({ loggedInAt: new Date().toISOString(), userId: 1}));
   }
 }

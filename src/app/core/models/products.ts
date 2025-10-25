@@ -15,5 +15,7 @@ export type Product = {
     description: string,
     category: string,
     image: string,
-    rating?: any
+    rating?: any,
+    productId?:number,
+    quantity?:number
   }

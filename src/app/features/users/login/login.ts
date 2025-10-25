@@ -28,6 +28,7 @@ export class Login {
       if(res.status === 'success') {
         this.loginForm.reset();
         this.session.setSeesionToken(res.data.token);
+        this.session.setSessionStorageObject('user_details', res.data);
         this.router.navigateByUrl('/');
       }else{
         console.error('Login failed',res, res.error);
